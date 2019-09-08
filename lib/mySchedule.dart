@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'classes/userWeek.dart';
 
+
 class MySchedulePage extends StatefulWidget {
   // final Color color;
   MySchedulePage(/* this.color) */);
@@ -27,19 +28,20 @@ class _MySchedulePageState extends State<MySchedulePage> {
     print("dispose blank");
   }
 
-  // List<List<String>> weekState = [
-  //   [' ', 'L', 'M', 'M', 'J', 'V', 'S'],
-  //   ['', ' ', ' ', 'T', ' ', ' ', ' '],
-  //   ['B', 'T', ' ', ' ', ' ', 'B', ' '],
-  //   [' ', ' ', ' ', 'B', ' ', ' ', 'T'],
-  //   [' ', ' ', 'T', ' ', ' ', 'T', ' '],
-  //   [' ', ' ', ' ', ' ', ' ', ' ', 'B'],
-  //   [' ', ' ', ' ', ' ', 'T', ' ', ' '],
-  //   ['P1',' ', ' ', ' ', ' ', ' ', ' '],
-  // ];
+  List<List<String>> weekState = [
+    [' ', 'L', 'M', 'M', 'J', 'V', 'S'],
+    ['', ' ', ' ', 'T', ' ', ' ', ' '],
+    ['B', 'T', ' ', ' ', ' ', 'B', ' '],
+    [' ', ' ', ' ', 'B', ' ', ' ', 'T'],
+    [' ', ' ', 'T', ' ', ' ', 'T', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', 'B'],
+    [' ', ' ', ' ', ' ', 'T', ' ', ' '],
+    ['P1',' ', ' ', ' ', ' ', ' ', ' '],
+  ];
 
   Widget _buildGridItem(int x, int y) {
-    UserWeek week = UserWeek(0, [111, 112, 113, 114, 115]);
+    UserWeek week = UserWeek('ucb', [111, 2]);
+    week.getSubjects();
 
     switch (weekState[x][y]) {
       case '':

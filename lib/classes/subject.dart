@@ -7,5 +7,5 @@ class Subject {
   int takenSeats;
   List days;
   List hours;  
-  Subject(this.professor, this.groupId, this.maxSeats, this.takenSeats, this.days, this.hours);
+  Subject({this.groupId=1, this.maxSeats=60, this.takenSeats=0, this.days, this.hours,this.professor="Yamil Cardenas"});
 }

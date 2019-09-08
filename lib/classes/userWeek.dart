@@ -5,11 +5,7 @@ import 'subjectGroup.dart';
 class UserWeek {
   int days;
   int hours;
-  int type;
-  int collegeId;
-  // 0 : Ucb
-  // 1 : Umsa
-  // and so on
+  String collegeId;
   List subjectsId;
   List groupId;
 
@@ -18,12 +14,9 @@ class UserWeek {
   List materias;
   List paralelos;
 
-
   List dias = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa','Do'];
   // List<List<String>> weekState;
-
  
-
   List<List<int>> weekState = [
     [ 0, 0, 0, 0, 0, 0],//0
     [ 0, 2, 0, 3, 0, 0],//1
@@ -45,43 +38,33 @@ class UserWeek {
   ];
 
   getUserWeek(){
-    
     // ['L', 'M', 'M', 'J', 'V', 'S'],
   }
 
-  getSubjects(){
+  getSubjects() async {
     //TO-DO firestores, check, subjects with labs
-    List pruebaMaterias = ['Calculo I', 'Algebra I', 'Progra I (T)', /* 'Progra I (L)', */ 'Escritura Academica', 'Antropologia Cristiana'];
-    List pruebaParalelos = ['1', '1', '2', '2', '1', '13'];
+    // List pruebaMaterias = ['Calculo I', 'Algebra I', 'Progra I (T)', /* 'Progra I (L)', */ 'Escritura Academica', 'Antropologia Cristiana'];
+    // List pruebaParalelos = ['1', '1', '2', '2', '1', '13'];
+    for(int i=0; i < this.subjectsId.length; i+=2){
+       // this.collegeId = 'UCB'
+       // this.subjectsId = [111, 3] //subjectId,,groupId,, subjectId,,groupId, subjectId,,groupId, 
 
-
-
-    for(int i=0; i < this.subjectsId.length; i++){
-      //this.collegeId[i]-> de que universidad lo saco
-      //this.groupId[i]=> de que paralelo
-      //from firestore
-      //get subjects one after the other
-
-      SubjectGroup materia = SubjectGroup(this.collegeId, this.groupId[i]);
-  
-      // this.materias = pruebaMaterias[i];
-      // this.paralelos =pruebaParalelos[i];
+      SubjectGroup materia = SubjectGroup(this.collegeId, this.subjectsId[i], this.subjectsId[i+1]);
+      var val = await materia.getGroupSubject().then((data){
+        return data;
+      });
+      print(val[0]);
+      print(val[1]);
+      print(val[2]);
+      print(val[3]);
+      print(val[4]);
+      print(val[5]);
     }
-
   }
 
 
   buildWeek(){
-    switch (this.type) {
-      case 1://UCB
-        break;
-      case 1://UMSA
-        break;
-      case 1://UPB
-        break;
-      default:
-        return ;
-    }
+
   }
 
   getCleanUserWeek(){

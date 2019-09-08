@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'subject.dart';
+import '../backend/firestoreFunctions.dart' as fireStore;
 
 class SubjectGroup {
   String name;
@@ -12,13 +13,11 @@ class SubjectGroup {
   List prerequisitesId; 
   List <Subject> groups;//paralelos
 
-  int collegeId;
-  // 0 : Ucb
-  // 1 : Umsa
-  // and so on
+  String collegeId;
   int subjectId;
+  int groupId;
 
-  SubjectGroup(this.collegeId, this.subjectId);
+  SubjectGroup(this.collegeId, this.subjectId, this.groupId);
 
 
 
@@ -36,16 +35,30 @@ class SubjectGroup {
                         'Integrales impropias.';
     this.prerequisites = ['MAT-030'];
     this.prerequisitesId = [101];
-    getSubjectGroup();
+    // getSubjectGroup();
   }
 
-  getSubjectGroup(){
+
+
+  Future getGroupSubject() async{
+    var val = fireStore.getSubject(this.collegeId, this.subjectId, this.groupId).then((response){
+
+      if(response.length > 1){
+        return response;
+      }else{
+        print("****************** EXISTE PROBLEMA AL OBTENER LOS DATOS DE FIRESTORE ******************");
+      }
+    });
+    return val;
+  }
+
+  getAllGroupsSubject(){
     List subjectsFromFirebase = [];
     for(int i = 0; i<subjectsFromFirebase.length; i++){
       
+      // fireStore.getSubejct(this.collegeId, this.subjectId)
       // Subject materia= Subject(subjectsFromFirebase.professor, subjectsFromFirebase.groupName, this.groupId, this.maxSeats, this.takenSeats, this.days, this.hours);
       // this.groups.add(materia);
-
     }
   }
 
