@@ -16,7 +16,6 @@ class UserWeek {
 
   List dias = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa','Do'];
   // List<List<String>> weekState;
- 
   List<List<int>> weekState = [
     [ 0, 0, 0, 0, 0, 0],//0
     [ 0, 2, 0, 3, 0, 0],//1
